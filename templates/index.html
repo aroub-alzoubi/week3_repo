@@ -13,37 +13,35 @@
 <button type="submit">Generate Plan</button>
 </form>
 <hr>
-   {% if original %}
+
+    {% if original %}
 <h2>Results</h2>
 <h3>Original Task Input:</h3>
 <p>{{ original }}</p>
 <h3>Summary:</h3>
 <p>{{ result.summary }}</p>
 <h3>Organized Tasks:</h3>
-<table border="1">
-<thead>
-<tr>
-<th>Category</th>
-<th>Task</th>
-<th>Priority</th>
-</tr>
-</thead>
-<tbody>
-               {% for item in result.organized_tasks %}
-<tr>
-<td>{{ item.category }}</td>
-<td>{{ item.task_name }}</td>
-<td>{{ item.priority }}</td>
-</tr>
-               {% endfor %}
-</tbody>
-</table>
+<ul>
+
+            {% for item in result.organized_tasks %}
+<li>
+<strong>Category:</strong> {{ item.category }} |
+<strong>Task:</strong> {{ item.task_name }} |
+<strong>Priority:</strong> {{ item.priority }}
+</li>
+
+            {% endfor %}
+</ul>
 <h3>Generated Subtasks:</h3>
 <ul>
-           {% for subtask in result.subtasks %}
+
+            {% for subtask in result.subtasks %}
 <li>{{ subtask }}</li>
-           {% endfor %}
+
+            {% endfor %}
 </ul>
-   {% endif %}
+
+    {% endif %}
 </body>
 </html>
+ 
