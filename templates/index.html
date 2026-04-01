@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Task Planner</title>
+</head>
+<body>
+<h1>AI Task Planner Agent</h1>
+<form method="post">
+<label for="task">Enter your tasks (one per line):</label><br>
+<textarea id="task" name="task" rows="10" cols="50" required placeholder="Finish report&#10;Prepare slides&#10;Buy groceries"></textarea>
+<br>
+<button type="submit">Generate Plan</button>
+</form>
+<hr>
+   {% if original %}
+<h2>Results</h2>
+<h3>Original Task Input:</h3>
+<p>{{ original }}</p>
+<h3>Summary:</h3>
+<p>{{ result.summary }}</p>
+<h3>Organized Tasks:</h3>
+<table border="1">
+<thead>
+<tr>
+<th>Category</th>
+<th>Task</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+               {% for item in result.organized_tasks %}
+<tr>
+<td>{{ item.category }}</td>
+<td>{{ item.task_name }}</td>
+<td>{{ item.priority }}</td>
+</tr>
+               {% endfor %}
+</tbody>
+</table>
+<h3>Generated Subtasks:</h3>
+<ul>
+           {% for subtask in result.subtasks %}
+<li>{{ subtask }}</li>
+           {% endfor %}
+</ul>
+   {% endif %}
+</body>
+</html>
